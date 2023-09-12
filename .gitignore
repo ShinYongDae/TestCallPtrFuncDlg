@@ -1,0 +1,11 @@
+Debug/
+ipch/
+x64/
+TestCallPtrFunc.sdf
+TestCallPtrFunc.VC.db
+TestCallPtrFunc/Debug/
+TestCallPtrFunc/x64/
+.vs/
+TestCallPtrFunc/TestCallPtrFunc.aps
+
+
