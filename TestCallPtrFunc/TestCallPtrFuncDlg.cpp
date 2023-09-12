@@ -103,15 +103,18 @@ BOOL CTestCallPtrFuncDlg::OnInitDialog()
 
 	fp = &CTestCallPtrFuncDlg::Func1;
 	//m_arFunc.Add(fp);
-	m_vecFunc.push_back(fp);
+	//m_vecFunc.push_back(fp);
+	m_queFunc.push(fp);
 
 	fp = &CTestCallPtrFuncDlg::Func2;
 	//m_arFunc.Add(fp);
-	m_vecFunc.push_back(fp);
+	//m_vecFunc.push_back(fp);
+	m_queFunc.push(fp);
 
 	fp = &CTestCallPtrFuncDlg::Func3;
 	//m_arFunc.Add(fp);
-	m_vecFunc.push_back(fp);
+	//m_vecFunc.push_back(fp);
+	m_queFunc.push(fp);
 
 	CallArFunc();
 
@@ -181,11 +184,19 @@ void CTestCallPtrFuncDlg::CallArFunc()
 	//	nCount = m_arFunc.GetSize();
 	//}
 
-	void (CTestCallPtrFuncDlg::*ptr)();
-	for (std::vector<void(CTestCallPtrFuncDlg::*)()>::iterator it = m_vecFunc.begin(); it < m_vecFunc.end(); it++)
+	//void (CTestCallPtrFuncDlg::*ptr)();
+	//for (std::vector<void(CTestCallPtrFuncDlg::*)()>::iterator it = m_vecFunc.begin(); it < m_vecFunc.end(); it++)
+	//{
+	//	ptr = (*it);
+	//	(((CTestCallPtrFuncDlg*)this)->*ptr)(); //함수 포인터로 함수 호출
+	//}
+
+	while (!m_queFunc.empty())
 	{
-		ptr = (*it);
-		(((CTestCallPtrFuncDlg*)this)->*ptr)(); //함수 포인터로 함수 호출
+		void (CTestCallPtrFuncDlg::*fp)();
+		fp = m_queFunc.front();
+		m_queFunc.pop();
+		(((CTestCallPtrFuncDlg*)this)->*fp)(); //함수 포인터로 함수 호출
 	}
 
 	// vector를 iterator로 반복한다.

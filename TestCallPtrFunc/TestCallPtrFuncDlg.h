@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include <vector>
-
+//#include <vector>
+#include <queue>
 
 // CTestCallPtrFuncDlg 대화 상자
 class CTestCallPtrFuncDlg : public CDialogEx
@@ -27,8 +27,12 @@ public:
 	//CArFunc m_arFunc;
 	//void CallArFunc();
 
+	//typedef void(CTestCallPtrFuncDlg::*PtrFunc)();
+	//std::vector<void(CTestCallPtrFuncDlg::*)()> m_vecFunc;
+	//void CallArFunc();
+
 	typedef void(CTestCallPtrFuncDlg::*PtrFunc)();
-	std::vector<void(CTestCallPtrFuncDlg::*)()> m_vecFunc;
+	std::queue<void(CTestCallPtrFuncDlg::*)()> m_queFunc;
 	void CallArFunc();
 
 	void Func1();
